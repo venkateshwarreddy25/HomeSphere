@@ -8,13 +8,13 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCWcuwpAR_aWGe9w3_n7PAgLy8DVPdfM_g",
-  authDomain: "house-3035d.firebaseapp.com",
-  projectId: "house-3035d",
-  storageBucket: "house-3035d.firebasestorage.app",
-  messagingSenderId: "944056320567",
-  appId: "1:944056320567:web:60c0f06f74cc5c9d6c35b2",
-  measurementId: "G-ZN0BLM0MY6"
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID
 };
 
 // Initialize Firebase (safely for hot reloads)
