@@ -175,7 +175,7 @@ const Footer = () => {
 
       {/* ── MAIN FOOTER GRID ── */}
       <div className="container" style={{ padding: '5rem 1.5rem 3rem' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '4rem', marginBottom: '4rem' }}>
+        <div className="footer-main-grid">
 
           {/* Brand */}
           <div>

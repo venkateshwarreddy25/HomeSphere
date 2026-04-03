@@ -104,51 +104,33 @@ const HomePage = () => {
   return (
     <div style={{ paddingTop: '70px', background: '#fff', minHeight: '100vh' }}>
       {/* 1. HERO SECTION */}
-      <section style={{
-        position: 'relative',
-        height: '420px',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}>
-        {/* Dark Overlay */}
-        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.5)' }}></div>
+      <section className="home-hero-section" style={{ backgroundImage: `url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop')` }}>
+        <div className="home-hero-overlay"></div>
 
-        <div className="container" style={{ position: 'relative', zIndex: 10, width: '100%', maxWidth: '1000px' }}>
-          
-          {/* Hero Promotional Text */}
-          <div style={{ textAlign: 'center', marginBottom: '2rem', color: '#fff' }}>
-             <h1 style={{ fontSize: '3.5rem', fontWeight: 800, margin: 0, fontFamily: 'Outfit, sans-serif' }}>
-                 PAY 30% <span style={{ fontSize: '2rem', verticalAlign: 'middle', fontWeight: 600 }}>AND OWN</span>
+        <div className="home-hero-content">
+          <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+             <h1 className="home-hero-title">
+                 PAY 30% <span>AND OWN</span>
              </h1>
-             <p style={{ fontSize: '1.2rem', margin: '0.5rem 0 0', fontWeight: 500, letterSpacing: '1px' }}>
+             <p className="home-hero-subtitle">
                  3 BHK ₹2.98 CR* Onwards
              </p>
           </div>
 
-          {/* Search Box Container */}
-          <div style={{
-            background: '#fff', borderRadius: '16px', 
-            boxShadow: '0 8px 30px rgba(0,0,0,0.15)', overflow: 'hidden'
-          }}>
-            {/* Tabs */}
-            <div style={{ display: 'flex', borderBottom: '1px solid #e1e4e8', overflowX: 'auto', WebkitOverflowScrolling: 'touch', padding: '0 1rem' }}>
+          <div className="home-search-container">
+            <div className="home-search-tabs">
               {tabs.map((tab, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveTab(tab.label)}
                   style={{
-                    padding: '1rem 1.5rem',
+                    padding: '1.2rem 1.75rem',
                     background: 'transparent',
                     border: 'none',
-                    borderBottom: activeTab === tab.label ? '3px solid #0078db' : '3px solid transparent',
-                    fontWeight: activeTab === tab.label ? 700 : 500,
-                    color: activeTab === tab.label ? '#1a1a1a' : '#4a4a4a',
-                    fontSize: '0.95rem',
+                    borderBottom: activeTab === tab.label ? '4px solid #0078db' : '4px solid transparent',
+                    fontWeight: activeTab === tab.label ? 800 : 600,
+                    color: activeTab === tab.label ? '#0078db' : '#4a4a4a',
+                    fontSize: '1rem',
                     cursor: 'pointer',
                     transition: 'all 0.2s',
                     whiteSpace: 'nowrap',
@@ -156,51 +138,43 @@ const HomePage = () => {
                   }}
                 >
                   {tab.label}
-                  {tab.dot && <span style={{ position: 'absolute', top: '12px', right: '12px', width: '6px', height: '6px', background: '#eb1946', borderRadius: '50%' }}></span>}
+                  {tab.dot && <span style={{ position: 'absolute', top: '15px', right: '15px', width: '6px', height: '6px', background: '#eb1946', borderRadius: '50%' }}></span>}
                 </button>
               ))}
-              <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
+              <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', padding: '0 1rem' }}>
                 <Link to="/register" style={{ 
-                  background: '#f2f9ff', color: '#0078db', padding: '0.4rem 0.8rem', 
-                  borderRadius: '4px', fontSize: '0.85rem', fontWeight: 600, textDecoration: 'none',
-                  border: '1px solid #cce4f7'
+                  background: 'rgba(0,120,219,0.1)', color: '#0078db', padding: '0.5rem 1rem', 
+                  borderRadius: '8px', fontSize: '0.9rem', fontWeight: 700, textDecoration: 'none',
+                  border: '1px solid rgba(0,120,219,0.2)', whiteSpace: 'nowrap'
                 }}>
-                  Post Property <span style={{ background: '#22c55e', color: '#fff', padding: '1px 4px', borderRadius: '2px', fontSize: '0.65rem', marginLeft: '4px' }}>FREE</span>
+                  Post Property <span style={{ background: '#22c55e', color: '#fff', padding: '2px 6px', borderRadius: '4px', fontSize: '0.7rem', marginLeft: '6px' }}>FREE</span>
                 </Link>
               </div>
             </div>
 
-            {/* Input Area */}
-            <form onSubmit={handleSearch} style={{ display: 'flex', padding: '1.2rem', gap: '0.5rem', alignItems: 'center' }}>
-              <div style={{ display: 'flex', alignItems: 'center', padding: '0 1rem', borderRight: '1px solid #e1e4e8', cursor: 'pointer' }}>
-                 <span style={{ fontSize: '0.95rem', color: '#4a4a4a', fontWeight: 500, marginRight: '4px' }}>All Residential</span>
-                 <ChevronDown size={16} color="#4a4a4a" />
+            <form onSubmit={handleSearch} className="home-search-form">
+              <div className="search-filter-div">
+                 <span style={{ fontSize: '1rem', color: '#1a1a1a', fontWeight: 600, marginRight: '8px' }}>All Residential</span>
+                 <ChevronDown size={18} color="#1a1a1a" />
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', flex: 1, padding: '0 1rem' }}>
-                <Search size={20} color="#909090" style={{ marginRight: '0.75rem', flexShrink: 0 }} />
+              <div className="search-input-wrapper">
+                <Search size={22} color="#0078db" style={{ marginRight: '0.75rem', flexShrink: 0 }} />
                 <input
+                  className="search-input"
                   value={search}
                   onChange={e => setSearch(e.target.value)}
                   placeholder="Search 'PG in sector 74 noida'"
-                  style={{ flex: 1, border: 'none', background: 'transparent', padding: '0.5rem 0', fontSize: '1rem', outline: 'none', color: '#1a1a1a' }}
                 />
               </div>
-              <div style={{ display: 'flex', gap: '0.75rem', padding: '0 1rem' }}>
-                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#f5f7fa', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
-                   <Crosshair size={18} color="#0078db" />
+              <div style={{ display: 'flex', gap: '0.75rem', padding: '0 0.5rem' }}>
+                 <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(0,120,219,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'all 0.2s' }} onMouseOver={e=>e.currentTarget.style.background='rgba(0,120,219,0.2)'} onMouseOut={e=>e.currentTarget.style.background='rgba(0,120,219,0.1)'}>
+                   <Crosshair size={20} color="#0078db" />
                  </div>
-                 <div style={{ width: '40px', height: '40px', borderRadius: '50%', background: '#f5f7fa', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
-                   <Mic size={18} color="#0078db" />
+                 <div style={{ width: '44px', height: '44px', borderRadius: '50%', background: 'rgba(0,120,219,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', transition: 'all 0.2s' }} onMouseOver={e=>e.currentTarget.style.background='rgba(0,120,219,0.2)'} onMouseOut={e=>e.currentTarget.style.background='rgba(0,120,219,0.1)'}>
+                   <Mic size={20} color="#0078db" />
                  </div>
               </div>
-              <button type="submit" style={{
-                background: '#0078db', color: '#fff',
-                border: 'none', borderRadius: '8px', padding: '0.8rem 2rem',
-                fontWeight: 600, fontSize: '1rem', cursor: 'pointer', transition: 'background 0.2s'
-              }}
-              onMouseOver={e => e.currentTarget.style.background = '#0066b8'}
-              onMouseOut={e => e.currentTarget.style.background = '#0078db'}
-              >
+              <button type="submit" className="search-btn-primary">
                 Search
               </button>
             </form>
@@ -209,27 +183,27 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* 2. GET STARTED OPTIONS (Horizontal Scroll) */}
-      <section style={{ padding: '3rem 0', background: '#fff', textAlign: 'center' }}>
+      {/* 2. GET STARTED OPTIONS */}
+      <section style={{ padding: '4rem 0', background: '#fff', textAlign: 'center' }}>
         <div className="container">
-          <h3 style={{ color: '#909090', fontSize: '0.8rem', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase', marginBottom: '1.5rem' }}>Get started with exploring real estate options</h3>
-          <div style={{ display: 'flex', gap: '1.2rem', overflowX: 'auto', paddingBottom: '1.5rem', msOverflowStyle: 'none', scrollbarWidth: 'none', justifyContent: 'center' }}>
+          <h3 className="home-section-subtitle">Get started with exploring real estate options</h3>
+          <div className="home-explore-grid">
             {exploreCards.map((c, i) => (
-               <div key={i} onClick={c.action} style={{ flex: '0 0 auto', width: '180px', display: 'flex', flexDirection: 'column', gap: '0.75rem', cursor: 'pointer' }}
-                 onMouseOver={e => e.currentTarget.querySelector('img').style.transform = 'scale(1.08)'}
-                 onMouseOut={e => e.currentTarget.querySelector('img').style.transform = 'scale(1)'}
+               <div key={i} onClick={c.action} className="home-explore-card"
+                 onMouseOver={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1.08)'; e.currentTarget.querySelector('.explore-title').style.color = '#0078db'; }}
+                 onMouseOut={e => { e.currentTarget.querySelector('img').style.transform = 'scale(1)'; e.currentTarget.querySelector('.explore-title').style.color = '#1a1a1a'; }}
                >
-                 <div style={{ width: '100%', height: '110px', borderRadius: '12px', overflow: 'hidden', position: 'relative', background: '#f5f7fa' }}>
-                   {c.badge && <div style={{ position: 'absolute', top: '8px', left: '8px', background: '#eb1946', color: '#fff', fontSize: '0.65rem', fontWeight: 700, padding: '2px 6px', borderRadius: '4px', zIndex: 10 }}>{c.badge}</div>}
-                   <img src={c.img} alt={c.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.3s ease' }} />
+                 <div style={{ width: '100%', height: '140px', borderRadius: '16px', overflow: 'hidden', position: 'relative', background: '#f5f7fa', boxShadow: '0 8px 20px rgba(0,0,0,0.06)' }}>
+                   {c.badge && <div style={{ position: 'absolute', top: '10px', left: '10px', background: '#eb1946', color: '#fff', fontSize: '0.7rem', fontWeight: 800, padding: '3px 8px', borderRadius: '6px', zIndex: 10 }}>{c.badge}</div>}
+                   <img src={c.img} alt={c.title} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)' }} />
                  </div>
-                 <div style={{ fontSize: '0.95rem', fontWeight: 600, color: '#1a1a1a', textAlign: 'center' }}>{c.title}</div>
+                 <div className="explore-title" style={{ fontSize: '1.05rem', fontWeight: 700, color: '#1a1a1a', textAlign: 'center', marginTop: '1rem', transition: 'color 0.2s' }}>{c.title}</div>
                </div>
             ))}
           </div>
           
-          <div style={{ marginTop: '2rem' }}>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 800, color: '#1a1a1a', fontFamily: 'Outfit, sans-serif' }}>Find Better Places to Live, Work<br/>and Wonder...</h2>
+          <div style={{ marginTop: '3rem' }}>
+              <h2 className="home-section-title">Find Better Places to Live, Work<br/>and Wonder...</h2>
           </div>
         </div>
       </section>
@@ -238,46 +212,48 @@ const HomePage = () => {
       <section style={{ padding: '2rem 0 5rem', background: '#fff' }}>
         <div className="container">
           
-          {/* Handpicked Header */}
-          <div style={{ marginBottom: '1.5rem' }}>
-             <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#1a1a1a', marginBottom: '0.25rem' }}>Handpicked Residential Projects</h2>
-             <p style={{ color: '#7a7a7a', fontSize: '0.95rem' }}>Featured Residential projects across India</p>
+          <div style={{ marginBottom: '2rem' }}>
+             <h2 className="home-section-title" style={{ fontSize: '2.2rem', marginBottom: '0.5rem' }}>Handpicked Residential Projects</h2>
+             <p className="home-section-subtitle" style={{ letterSpacing: '1px' }}>Featured Residential projects across India</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
             {loading ? (
-               Array.from({length: 6}).map((_, i) => <div key={i} style={{ width: '100%', height: '320px', background: '#f5f7fa', borderRadius: '16px' }} />)
+               Array.from({length: 6}).map((_, i) => <div key={i} style={{ width: '100%', height: '360px', background: '#f5f7fa', borderRadius: '20px' }} />)
             ) : featured.length > 0 ? (
               featured.map(p => (
                 <Link to={`/property/${p.id}`} key={p.id} style={{ display: 'block', width: '100%', textDecoration: 'none' }}>
-                  <div style={{ position: 'relative', width: '100%', height: '320px', borderRadius: '16px', overflow: 'hidden', cursor: 'pointer', background: '#000' }}>
+                  <div style={{ position: 'relative', width: '100%', height: '360px', borderRadius: '20px', overflow: 'hidden', cursor: 'pointer', background: '#000', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', transition: 'transform 0.3s' }}
+                    onMouseOver={e => e.currentTarget.style.transform = 'translateY(-5px)'}
+                    onMouseOut={e => e.currentTarget.style.transform = 'translateY(0)'}
+                  >
                     <img src={p.photos?.[0] || 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6'} alt={p.title} 
-                         style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} />
+                         style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8, transition: 'opacity 0.3s' }} 
+                         onMouseOver={e => e.currentTarget.style.opacity = 1}
+                         onMouseOut={e => e.currentTarget.style.opacity = 0.8}
+                    />
                     
-                    {/* Featured / RERA Tag */}
-                    <div style={{ position: 'absolute', top: '15px', left: '15px', background: '#8b3dff', color: '#fff', fontSize: '0.65rem', padding: '3px 8px', borderRadius: '4px', fontWeight: 700, textTransform: 'uppercase' }}>
+                    <div style={{ position: 'absolute', top: '20px', left: '20px', background: '#8b3dff', color: '#fff', fontSize: '0.75rem', padding: '4px 12px', borderRadius: '6px', fontWeight: 800, textTransform: 'uppercase' }}>
                       Featured
                     </div>
 
-                    {/* Inner floating box */}
-                    <div style={{ position: 'absolute', bottom: '15px', left: '15px', right: '15px', background: '#fff', borderRadius: '12px', padding: '25px 15px 15px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
-                      {/* Avatar/Logo overlapping */}
-                      <div style={{ position: 'absolute', top: '-25px', left: '15px', width: '50px', height: '50px', borderRadius: '50%', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}>
+                    <div style={{ position: 'absolute', bottom: '20px', left: '20px', right: '20px', background: '#fff', borderRadius: '16px', padding: '25px 20px 20px', boxShadow: '0 8px 24px rgba(0,0,0,0.15)' }}>
+                      <div style={{ position: 'absolute', top: '-25px', left: '20px', width: '50px', height: '50px', borderRadius: '50%', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}>
                         <Building2 size={24} color="#d4a373" />
                       </div>
                       
-                      <h3 style={{ fontSize: '1.05rem', fontWeight: 700, margin: '0 0 4px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: '#1a1a1a' }}>{p.title}</h3>
-                      <p style={{ color: '#7a7a7a', fontSize: '0.85rem', margin: '0 0 8px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                         {p.type === 'plot' ? 'Land/Plot' : p.type === 'rental' ? 'Rent' : 'Independent House/Villa'}, {p.address}
+                      <h3 style={{ fontSize: '1.15rem', fontWeight: 800, margin: '0 0 4px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', color: '#1a1a1a' }}>{p.title}</h3>
+                      <p style={{ color: '#7a7a7a', fontSize: '0.9rem', margin: '0 0 10px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                         {p.type === 'plot' ? 'Land/Plot' : p.type === 'rental' ? 'Rent' : 'House/Villa'}, {p.address}
                       </p>
-                      <div style={{ fontSize: '1.15rem', fontWeight: 700, color: '#1a1a1a' }}>{formatPrice(p.price)}</div>
+                      <div style={{ fontSize: '1.25rem', fontWeight: 800, color: '#1a1a1a' }}>{formatPrice(p.price)}</div>
                     </div>
                   </div>
                 </Link>
               ))
             ) : (
-              <div style={{ padding: '2rem', border: '1px solid #e1e4e8', borderRadius: '16px', gridColumn: '1 / -1', textAlign: 'center' }}>
-                <p style={{ color: '#7a7a7a' }}>No matching properties found.</p>
+              <div style={{ padding: '3rem', background: '#f5f7fa', borderRadius: '20px', gridColumn: '1 / -1', textAlign: 'center' }}>
+                <p style={{ color: '#7a7a7a', fontSize: '1.1rem', fontWeight: 600 }}>No matching properties found.</p>
               </div>
             )}
           </div>
@@ -285,18 +261,18 @@ const HomePage = () => {
       </section>
 
       {/* 4. POPULAR CITIES */}
-      <section style={{ padding: '3rem 0', background: '#fff' }}>
+      <section style={{ padding: '4rem 0', background: '#f8fafc' }}>
         <div className="container">
-          <p style={{ color: '#7a7a7a', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Top Cities</p>
-          <h2 style={{ fontSize: '2rem', fontWeight: 800, color: '#1a1a1a', marginBottom: '2rem', fontFamily: 'Outfit, sans-serif' }}>Explore Real Estate in Popular Indian Cities</h2>
+          <p className="home-section-subtitle">Top Cities</p>
+          <h2 className="home-section-title" style={{ marginBottom: '3rem' }}>Explore Real Estate in Popular Indian Cities</h2>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.5rem' }}>
+          <div className="home-cities-grid">
             {popularCities.map((city, idx) => (
-               <div key={idx} onClick={() => navigate(`/search?city=${city.name.split(' ')[0]}`)} style={{ display: 'flex', alignItems: 'center', gap: '1rem', cursor: 'pointer', background: '#fff', borderRadius: '12px', padding: '0.5rem', transition: 'box-shadow 0.2s', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }} onMouseOver={e => e.currentTarget.style.boxShadow = '0 6px 16px rgba(0,0,0,0.1)'} onMouseOut={e => e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.05)'}>
-                 <img src={city.img} alt={city.name} style={{ width: '80px', height: '80px', borderRadius: '8px', objectFit: 'cover' }} />
+               <div key={idx} onClick={() => navigate(`/search?city=${city.name.split(' ')[0]}`)} style={{ display: 'flex', alignItems: 'center', gap: '1.25rem', cursor: 'pointer', background: '#fff', borderRadius: '16px', padding: '0.75rem', transition: 'box-shadow 0.3s, transform 0.3s', boxShadow: '0 4px 12px rgba(0,0,0,0.05)' }} onMouseOver={e => {e.currentTarget.style.boxShadow = '0 12px 24px rgba(0,0,0,0.1)'; e.currentTarget.style.transform = 'translateY(-3px)';}} onMouseOut={e => {e.currentTarget.style.boxShadow = '0 4px 12px rgba(0,0,0,0.05)'; e.currentTarget.style.transform = 'translateY(0)';}}>
+                 <img src={city.img} alt={city.name} style={{ width: '90px', height: '90px', borderRadius: '12px', objectFit: 'cover' }} />
                  <div>
-                   <h4 style={{ margin: '0 0 4px', fontSize: '1rem', fontWeight: 700, color: '#1a1a1a' }}>{city.name}</h4>
-                   <p style={{ margin: 0, fontSize: '0.85rem', color: '#7a7a7a' }}>{city.properties} Properties</p>
+                   <h4 style={{ margin: '0 0 6px', fontSize: '1.1rem', fontWeight: 800, color: '#1a1a1a' }}>{city.name}</h4>
+                   <p style={{ margin: 0, fontSize: '0.9rem', color: '#7a7a7a', fontWeight: 500 }}>{city.properties} Properties</p>
                  </div>
                </div>
             ))}
@@ -305,19 +281,22 @@ const HomePage = () => {
       </section>
 
       {/* 5. BENEFITS */}
-      <section style={{ padding: '4rem 0', background: '#f5f7fa', textAlign: 'center' }}>
+      <section style={{ padding: '6rem 0', background: '#fff', textAlign: 'center' }}>
         <div className="container">
-          <p style={{ color: '#7a7a7a', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Benefits of E-Housing</p>
-          <h2 style={{ fontSize: '2rem', fontWeight: 800, color: '#1a1a1a', marginBottom: '3rem', fontFamily: 'Outfit, sans-serif' }}>Why choose E-Housing</h2>
+          <p className="home-section-subtitle">Benefits of E-Housing</p>
+          <h2 className="home-section-title" style={{ marginBottom: '4rem' }}>Why choose E-Housing</h2>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+          <div className="home-benefits-grid">
             {benefitsData.map((b, i) => (
-              <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-                <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: '#e6f3ff', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem' }}>
-                   {b.icon}
+              <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '2rem', background: '#f8fafc', borderRadius: '24px', transition: 'transform 0.3s' }}
+                onMouseOver={e => e.currentTarget.style.transform = 'translateY(-5px)'}
+                onMouseOut={e => e.currentTarget.style.transform = 'translateY(0)'}
+              >
+                <div style={{ width: '70px', height: '70px', borderRadius: '50%', background: '#e6f3ff', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '2rem', boxShadow: '0 8px 16px rgba(0,120,219,0.15)' }}>
+                   {React.cloneElement(b.icon, { size: 30 })}
                 </div>
-                <h4 style={{ margin: '0 0 1rem', fontSize: '1.1rem', fontWeight: 700, color: '#0078db' }}>{b.title}</h4>
-                <p style={{ margin: 0, fontSize: '0.95rem', color: '#7a7a7a', lineHeight: 1.5 }}>{b.text}</p>
+                <h4 style={{ margin: '0 0 1rem', fontSize: '1.25rem', fontWeight: 800, color: '#0078db' }}>{b.title}</h4>
+                <p style={{ margin: 0, fontSize: '1.05rem', color: '#7a7a7a', lineHeight: 1.6 }}>{b.text}</p>
               </div>
             ))}
           </div>
@@ -325,70 +304,58 @@ const HomePage = () => {
       </section>
 
       {/* 6. TESTIMONIALS */}
-      <section style={{ padding: '4rem 0', background: '#fff' }}>
+      <section style={{ padding: '4rem 0 6rem', background: '#f8fafc' }}>
         <div className="container">
-          <p style={{ color: '#7a7a7a', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '1px', marginBottom: '0.5rem' }}>Testimonials</p>
-          <h2 style={{ fontSize: '2rem', fontWeight: 800, color: '#1a1a1a', marginBottom: '0.5rem', fontFamily: 'Outfit, sans-serif' }}>What our customers are<br/>saying about E-Housing</h2>
-          <p style={{ color: '#7a7a7a', fontSize: '0.95rem', marginBottom: '3rem' }}>Hear from our satisfied buyers, tenants, owners and dealers</p>
+          <p className="home-section-subtitle">Testimonials</p>
+          <h2 className="home-section-title" style={{ marginBottom: '0.5rem' }}>What our customers are<br/>saying about E-Housing</h2>
+          <p style={{ color: '#7a7a7a', fontSize: '1.1rem', marginBottom: '3rem', fontWeight: 500 }}>Hear from our satisfied buyers, tenants, owners and dealers</p>
 
-          <div style={{ display: 'flex', gap: '1.5rem', overflowX: 'auto', paddingBottom: '1.5rem', msOverflowStyle: 'none', scrollbarWidth: 'none' }}>
+          <div style={{ display: 'flex', gap: '2rem', overflowX: 'auto', paddingBottom: '2rem', msOverflowStyle: 'none', scrollbarWidth: 'none', paddingLeft: '1rem', paddingRight: '1rem' }}>
             {testimonials.map((t, i) => (
-              <div key={i}
+              <div key={i} className="testimonial-card"
                 style={{
-                  flex: '0 0 auto', width: '340px', padding: '1.75rem',
-                  borderRadius: '12px', border: '1px solid #e8eaed',
-                  background: '#fff', boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
-                  transition: 'box-shadow 0.25s, transform 0.25s', cursor: 'default'
+                  flex: '0 0 auto', width: '380px', padding: '2rem',
+                  borderRadius: '20px', border: '1px solid rgba(0,0,0,0.05)',
+                  background: '#fff', boxShadow: '0 4px 15px rgba(0,0,0,0.04)',
+                  transition: 'box-shadow 0.3s, transform 0.3s', cursor: 'default'
                 }}
-                onMouseOver={e => { e.currentTarget.style.boxShadow = '0 10px 28px rgba(0,0,0,0.1)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
-                onMouseOut={e => { e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                onMouseOver={e => { e.currentTarget.style.boxShadow = '0 15px 35px rgba(0,0,0,0.1)'; e.currentTarget.style.transform = 'translateY(-5px)'; }}
+                onMouseOut={e => { e.currentTarget.style.boxShadow = '0 4px 15px rgba(0,0,0,0.04)'; e.currentTarget.style.transform = 'translateY(0)'; }}
               >
-                {/* Person row */}
-                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1.25rem' }}>
+                <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1.5rem' }}>
                   <img
                     src={t.img}
                     alt={t.name}
-                    style={{ width: '58px', height: '58px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #e8eaed' }}
+                    style={{ width: '64px', height: '64px', borderRadius: '50%', objectFit: 'cover', border: '3px solid #f0f2f5' }}
                     onError={e => { e.target.onerror = null; e.target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(t.name)}&background=0078db&color=fff&size=100`; }}
                   />
                   <div style={{ flex: 1 }}>
-                    <h4 style={{ margin: '0 0 2px', fontSize: '1rem', fontWeight: 700, color: '#1a1a1a' }}>{t.name}</h4>
-                    <p style={{ margin: '0 0 5px', fontSize: '0.8rem', color: '#7a7a7a' }}>{t.role}</p>
-                    <div style={{ display: 'flex', gap: '2px' }}>
+                    <h4 style={{ margin: '0 0 4px', fontSize: '1.1rem', fontWeight: 800, color: '#1a1a1a' }}>{t.name}</h4>
+                    <p style={{ margin: '0 0 6px', fontSize: '0.85rem', color: '#7a7a7a', fontWeight: 600 }}>{t.role}</p>
+                    <div style={{ display: 'flex', gap: '3px' }}>
                       {Array.from({ length: 5 }).map((_, s) => (
-                        <span key={s} style={{ color: s < t.stars ? '#f59e0b' : '#e2e8f0', fontSize: '0.85rem' }}>★</span>
+                        <span key={s} style={{ color: s < t.stars ? '#f59e0b' : '#e2e8f0', fontSize: '1rem' }}>★</span>
                       ))}
                     </div>
                   </div>
                 </div>
-                {/* Divider */}
-                <div style={{ height: '1px', background: '#f0f2f5', marginBottom: '1.25rem' }} />
-                {/* Quote */}
-                <div style={{ position: 'relative', paddingLeft: '1.25rem' }}>
+                <div style={{ height: '1px', background: '#f0f2f5', marginBottom: '1.5rem' }} />
+                <div style={{ position: 'relative', paddingLeft: '1.5rem' }}>
                   <span style={{
-                    position: 'absolute', top: '-8px', left: '-4px',
-                    fontSize: '3.5rem', color: '#dbeafe', lineHeight: 1,
+                    position: 'absolute', top: '-12px', left: '-8px',
+                    fontSize: '4rem', color: 'rgba(0,120,219,0.1)', lineHeight: 1,
                     fontFamily: 'Georgia, serif', userSelect: 'none'
                   }}>"</span>
-                  <p style={{ margin: 0, fontSize: '0.88rem', color: '#4a4a4a', lineHeight: 1.75 }}>{t.text}</p>
+                  <p style={{ margin: 0, fontSize: '0.95rem', color: '#4a4a4a', lineHeight: 1.8, fontWeight: 500 }}>{t.text}</p>
                 </div>
               </div>
             ))}
-          </div>
-
-          <div style={{ marginTop: '1.75rem' }}>
-            <span style={{ color: '#0078db', fontWeight: 600, fontSize: '0.95rem', display: 'inline-flex', alignItems: 'center', gap: '4px', cursor: 'pointer' }}
-              onMouseOver={e => e.currentTarget.style.textDecoration = 'underline'}
-              onMouseOut={e => e.currentTarget.style.textDecoration = 'none'}
-            >
-              View all testimonials <ChevronRight size={16} />
-            </span>
           </div>
         </div>
       </section>
 
       {/* RECENTLY VIEWED */}
-      <div style={{ background: '#f5f7fa', padding: '1rem 0' }}>
+      <div style={{ background: '#fff', padding: '2rem 0' }}>
          <RecentlyViewed />
       </div>
 
